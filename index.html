@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCare | Maintenance Request System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CAMPUS SERVICES</p>
+      <h1>CampusCare</h1>
+      <p class="subtitle">Campus Maintenance Request Management System</p>
+    </div>
+    <div class="header-actions">
+      <label for="roleSelect">View as</label>
+      <select id="roleSelect" aria-label="Select stakeholder role">
+        <option value="Student">Student</option>
+        <option value="Faculty">Faculty</option>
+        <option value="Maintenance Staff">Maintenance Staff</option>
+        <option value="Administrator">Administrator</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">SERVICE DESK</p>
+        <h2 id="welcomeTitle">Hello, Student 👋</h2>
+        <p>Report campus issues, track progress, and help keep your campus running smoothly.</p>
+      </div>
+      <div class="welcome-mark" aria-hidden="true">CC</div>
+    </section>
+
+    <section class="stats" aria-label="Request summary">
+      <article class="stat-card"><span>Total requests</span><strong id="totalCount">0</strong></article>
+      <article class="stat-card"><span>Open</span><strong id="openCount">0</strong></article>
+      <article class="stat-card"><span>In progress</span><strong id="progressCount">0</strong></article>
+      <article class="stat-card"><span>Resolved</span><strong id="resolvedCount">0</strong></article>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel" id="createPanel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">NEW TICKET</p><h2>Report an issue</h2></div>
+        </div>
+        <form id="requestForm">
+          <label for="requester">Your name</label>
+          <input id="requester" name="requester" type="text" placeholder="Enter your name" required>
+
+          <div class="two-col">
+            <div>
+              <label for="department">Department / Block</label>
+              <input id="department" name="department" type="text" placeholder="e.g. CSE Block" required>
+            </div>
+            <div>
+              <label for="category">Issue category</label>
+              <select id="category" name="category" required>
+                <option value="">Choose a category</option>
+                <option>Electrical</option>
+                <option>Plumbing</option>
+                <option>Cleaning</option>
+                <option>Furniture</option>
+                <option>Network / IT</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="location">Exact location</label>
+          <input id="location" name="location" type="text" placeholder="e.g. Room 204, second floor" required>
+
+          <label for="title">Issue title</label>
+          <input id="title" name="title" type="text" placeholder="Briefly describe the issue" required>
+
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3" placeholder="Add details that will help the team" required></textarea>
+
+          <div class="two-col">
+            <div>
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option>Normal</option><option>Low</option><option>High</option><option>Urgent</option>
+              </select>
+            </div>
+            <div>
+              <label for="contact">Contact (optional)</label>
+              <input id="contact" name="contact" type="text" placeholder="Email or phone">
+            </div>
+          </div>
+          <button class="primary-btn" type="submit">Submit request <span>→</span></button>
+          <p class="form-note">Demo project: requests are saved in this browser using local storage.</p>
+        </form>
+      </section>
+
+      <section class="panel requests-panel">
+        <div class="panel-heading requests-heading">
+          <div><p class="eyebrow">REQUEST BOARD</p><h2>Maintenance requests</h2></div>
+          <div class="filters">
+            <label class="sr-only" for="statusFilter">Filter by status</label>
+            <select id="statusFilter">
+              <option value="All">All statuses</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">In progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+            <label class="sr-only" for="searchInput">Search requests</label>
+            <input id="searchInput" type="search" placeholder="Search…">
+          </div>
+        </div>
+        <p id="roleHint" class="role-hint">As a Student, you can submit requests and view their status.</p>
+        <div id="requestList" class="request-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✓</div>
+          <h3>No requests yet</h3>
+          <p>Submit your first maintenance request using the form.</p>
+        </div>
+      </section>
+    </section>
+    <footer>CampusCare · Academic web project · Front-end demo</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
